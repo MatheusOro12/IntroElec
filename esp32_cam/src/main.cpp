@@ -1,18 +1,23 @@
 #include <Arduino.h>
+#include "camera_module.h"
+#include "storage.h"
+#include "wifi_config.h"
 
-// put function declarations here:
-int myFunction(int, int);
+
+unsigned long lastCapture = 0;
+
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    Serial.begin(115200);
+    setupWiFi();
+    setupCamera();
+    setupStorage();
 }
+
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    if (millis() - lastCapture > 3600000) {
+        captureAndSavePhoto();
+        lastCapture = millis();
+    }
 }
