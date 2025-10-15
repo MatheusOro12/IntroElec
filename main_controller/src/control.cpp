@@ -5,6 +5,10 @@
 #define PELTIER_HEAT 25
 #define PELTIER_COOL 26
 
+// Valores configuráveis
+float targetTemperature = 37.0;
+float targetHumidity = 50.0;
+
 void setupControl() {
     ledcSetup(0, 1000, 8);
     ledcSetup(1, 1000, 8);
@@ -14,11 +18,11 @@ void setupControl() {
 
 void updateControl() {
     float t = getTemperature();
-    float target = 37.0;
-    if (t < target - 0.5) {
+
+    if (t < targetTemperature - 0.5) {
         ledcWrite(0, 200);
         ledcWrite(1, 0);
-    } else if (t > target + 0.5) {
+    } else if (t > targetTemperature + 0.5) {
         ledcWrite(0, 0);
         ledcWrite(1, 200);
     } else {
@@ -26,3 +30,10 @@ void updateControl() {
         ledcWrite(1, 0);
     }
 }
+
+// Getters e setters
+float getTargetTemperature() { return targetTemperature; }
+float getTargetHumidity() { return targetHumidity; }
+
+void setTargetTemperature(float t) { targetTemperature = t; }
+void setTargetHumidity(float h) { targetHumidity = h; }

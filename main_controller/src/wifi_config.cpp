@@ -1,8 +1,8 @@
 #include "wifi_config.h"
 #include <WiFi.h>
 
-const char* WIFI_SSID = "YOUR_SSID";
-const char* WIFI_PASS = "YOUR_PASSWORD";
+const char* WIFI_SSID = "Wi-Fi Minoru";
+const char* WIFI_PASS = "asdfghjkl";
 
 void setupWiFi() {
     WiFi.begin(WIFI_SSID, WIFI_PASS);
@@ -11,4 +11,5 @@ void setupWiFi() {
         Serial.print(".");
     }
     Serial.println("\nConnected to WiFi");
+    Serial.println(WiFi.localIP());
 }

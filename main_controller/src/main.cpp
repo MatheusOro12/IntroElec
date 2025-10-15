@@ -7,18 +7,19 @@
 
 void setup() {
 Serial.begin(115200);
-setupWiFi();
-setupServer();
-setupSensors();
-setupControl();
+//setupWiFi();
+//setupServer();
+//setupSensors();
+//setupControl();
 setupLCD();
+
 }
 
 
 void loop() {
-readSensors();
-updateControl();
+//readSensors();
+//updateControl();
 updateLCD();
-handleServer();
-delay(1000);
+//handleServer();
+delay(100);
 }
