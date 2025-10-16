@@ -4,14 +4,16 @@
 #include "sensors.h"
 #include "control.h"
 #include "lcd_display.h"
+#include "mdns_config.h"
 
 void setup() {
-Serial.begin(115200);
-//setupWiFi();
-//setupServer();
-//setupSensors();
-//setupControl();
-setupLCD();
+    Serial.begin(115200);
+    setupWiFi();
+    setupMDNS();
+    setupSensors();
+    setupControl();
+    setupLCD();
+    setupServer();
 
 }
 
