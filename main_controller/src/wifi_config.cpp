@@ -1,9 +1,9 @@
 #include "wifi_config.h"
 #include <WiFi.h>
 
-const char* WIFI_SSID = "Wi-Fi Minoru";
-const char* WIFI_PASS = "asdfghjkl";
-
+const char* WIFI_SSID = "iPhone de Matheus";
+const char* WIFI_PASS = "xenosauro1";
+ 
 void setupWiFi() {
     WiFi.begin(WIFI_SSID, WIFI_PASS);
     while (WiFi.status() != WL_CONNECTED) {

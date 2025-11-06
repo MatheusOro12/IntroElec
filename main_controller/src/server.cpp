@@ -69,7 +69,7 @@ void handleRoot() {
     server.send(200, "text/html", htmlPage);
 }
 
-void handleStatus() {
+void handleStatus() { //atualiza o que é mostrado no site
     float t = getTemperature();
     float h = getHumidity();
     float td = getTargetTemperature();

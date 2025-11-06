@@ -3,7 +3,7 @@
 #include <Arduino.h>
 
 const char* MDNS_NAME = "incubadora"; // O nome principal
-// Agora você acessa o controle em http://incubadora.local
+//acessa em http://incubadora.local
 
 void setupMDNS() {
     if (MDNS.begin(MDNS_NAME)) {
