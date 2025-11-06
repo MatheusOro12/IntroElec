@@ -20,14 +20,14 @@ void updateControl() {
     float t = getTemperature();
 
     if (t < targetTemperature - 0.5) {// temp a baixo, liga aquecer
-        ledcWrite(0, 200);
-        ledcWrite(1, 0);
+        ledcWrite(0, 200); // liga o aquecimento
+        ledcWrite(1, 0); // desliga o frio
     } else if (t > targetTemperature + 0.5) { // temp a cima, liga resfriador
-        ledcWrite(0, 0);
-        ledcWrite(1, 200);
+        ledcWrite(0, 0); // desliga o aquecimento
+        ledcWrite(1, 200); // liga o frio
     } else {
-        ledcWrite(0, 0);
-        ledcWrite(1, 0);
+        ledcWrite(0, 0); //desliga aquecimento
+        ledcWrite(1, 0); //desliga frio
     }
 }
 

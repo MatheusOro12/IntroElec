@@ -1,12 +1,12 @@
 #include "wifi_config.h"
 #include <WiFi.h>
 
-const char* WIFI_SSID = "iPhone de Matheus";
-const char* WIFI_PASS = "xenosauro1";
- 
+const char* WIFI_SSID = "iPhone de Matheus"; //nome da rede wifi
+const char* WIFI_PASS = "xenosauro1"; //senha da rede wifi
+
 void setupWiFi() {
     WiFi.begin(WIFI_SSID, WIFI_PASS);
-    while (WiFi.status() != WL_CONNECTED) {
+    while (WiFi.status() != WL_CONNECTED) { //loop para concectar no wifi
         delay(500);
         Serial.print(".");
     }

@@ -84,7 +84,7 @@ void handleStatus() { //atualiza o que é mostrado no site
     server.send(200, "application/json", json);
 }
 
-void handleSet() {
+void handleSet() {// recebe o que foi modificado no site 
     if (server.hasArg("temp")) {
         setTargetTemperature(server.arg("temp").toFloat());
     }
@@ -94,7 +94,7 @@ void handleSet() {
     server.send(200, "text/plain", "Valores atualizados");
 }
 
-void setupServer() {
+void setupServer() { //inicia o servidor com os inderesos genericos
     server.on("/", handleRoot);
     server.on("/status", handleStatus);
     server.on("/set", HTTP_POST, handleSet);
@@ -102,6 +102,6 @@ void setupServer() {
     Serial.println("Servidor iniciado");
 }
 
-void handleServer() {
+void handleServer() { //atualiza o servidor com o metodo padrao do server
     server.handleClient();
 }

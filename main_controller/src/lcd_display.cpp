@@ -8,11 +8,11 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setupLCD() { //inicia a tela LCD
     lcd.init();
-    lcd.backlight();
+    lcd.backlight(); //liga a luz de fundo da tela LCD
 }
 
 void updateLCD() {
-    lcd.clear();
+    lcd.clear(); //apaga tudo da tela LCD
     lcd.setCursor(0, 0);// printa primeira linha
     lcd.print("T:");
     lcd.print(getTemperature());

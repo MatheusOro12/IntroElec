@@ -3,7 +3,12 @@
 #include <esp_camera.h>
 #include <FS.h>
 
+/*
+Por enquanto esse arquivo não está sendo usado por não ter
+um cartão micro SD, mas ele salva no cartão
 
+PS: nao tenho certeza de estar funcionando
+*/
 void setupStorage() {
 if (!SD_MMC.begin()) {
 Serial.println("Card Mount Failed");
