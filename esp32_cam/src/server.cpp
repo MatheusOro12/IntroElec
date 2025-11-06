@@ -2,7 +2,7 @@
 #include "file_change.h"
 
 
-void setupServer(){
+void setupServer(){ //incia o servidor
     server.on("/", []() {
         server.sendHeader("Content-Type", "text/html; charset=utf-8");
         server.send(200, "text/html",
@@ -23,10 +23,10 @@ void setupServer(){
             "</body>"
             "</html>"
         );
-    });
+    });// codigo html do server
     server.on("/jpg", handleJpg);
     server.begin();
-    Serial.println("Servidor iniciado!");
+    Serial.println("Servidor iniciado!"); //printa que deu tudo certo
 }
 
 void handleServer(){

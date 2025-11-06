@@ -6,10 +6,10 @@ const char* WIFI_PASS = "xenosauro1"; //senha da rede wifi
 
 void setupWiFi() { //conecta no wifi
     WiFi.begin(WIFI_SSID, WIFI_PASS);
-    while (WiFi.status() != WL_CONNECTED) {
+    while (WiFi.status() != WL_CONNECTED) { //aguarda enqaunto a esp ainda nao conectou no wifi
         delay(500);
         Serial.print(".");
     }
     Serial.println("\nConnected to WiFi");
-    Serial.println(WiFi.localIP());
+    Serial.println(WiFi.localIP());// printa o endereço de ip da esp32
 }
