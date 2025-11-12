@@ -28,24 +28,24 @@
 
 ## 🎈 Introdução
 
-Projeto de encubadora para a materia de introdução a engenharia eletrica, utilizando uma esp32 wroom, uma esp32-CAM, un sensor de temperatura e umidade DHT11.Este projeto consiste em uma **incubadora automatizada**, desenvolvida como parte da disciplina de **Introdução à Engenharia Elétrica**.  
+Projeto de incubadora para a matéria de Introdução a Engenharia Elétrica, utilizando uma ESP32 wroom, uma ESP32-CAM e um sensor de temperatura e umidade DHT11. Este projeto consiste em uma **incubadora automatizada** e é desenvolvida como parte da avaliação para a disciplina de **Introdução à Engenharia Elétrica**.  
 O sistema utiliza uma **ESP32 WROOM** como controlador principal, uma **ESP32-CAM** para registro visual, e um **sensor DHT11** para monitoramento de **temperatura** e **umidade**.
 
 O objetivo é **controlar e monitorar as condições ambientais internas**, além de **gerar um timelapse** das imagens capturadas ao longo do tempo.
 
 ## ⚙️ Hardware
 
-### 🤖 Controlador principal esp32
+### 🤖 Controlador principal ESP32
 
 - Microcontrolador: **ESP32-WROOM**
 - Responsável pelo controle da incubadora:
   - Leitura do sensor de temperatura e umidade (**DHT11**)
-  - Controle de termico e de umidade (via **GPIOs**)
+  - Controle da temperatura e da umidade (via **GPIOs**)
   - Comunicação com a **ESP32-CAM** via rede Wi-Fi
   - Envio dos dados para monitoramento
 
 <p align="center"> 
-  Pinout da <b>Esp32 main</b> para guiar quais portas conectar:
+  Pinout da <b>ESP32 main</b> para guiar quais portas conectar:
  </p>
 
 <p align="center">
@@ -56,15 +56,15 @@ O objetivo é **controlar e monitorar as condições ambientais internas**, alé
   <img height=150px src="/media/DHT11.png" alt="DHT11 pinout"/>
 </p>
 
-Segundo o pinout da esp32 deve conectar:
+Segundo o pinout da ESP32 deve conectar:
 
 - **SDA** do LCD com a porta **D21**
-- **SCL** do LCD na porta **D22** da esp32
-- **Data pin** do DHT11 pa porta **D4** da esp32
-- **Positivo** da Peltier quente na porta **D25** da esp32
-- **Positivo** da Peltier fria na porta **D26** da esp32
+- **SCL** do LCD na porta **D22** da ESP32
+- **Data pin** do DHT11 pa porta **D4** da ESP32
+- **Positivo** da Peltier quente na porta **D25** da ESP32
+- **Positivo** da Peltier fria na porta **D26** da ESP32
 
-### 📷 Módulo esp32-CAM
+### 📷 Módulo ESP32-CAM
 
 - Módulo com câmera OV2640
 - Responsável por capturar imagens periodicamente
@@ -111,13 +111,13 @@ Segundo o pinout da esp32 deve conectar:
 
 ### :movie_camera: Gerando o Timelapse com Python
 
-Para gerar o timelapse com as imagens capturadas é primeiro preciso iniciar o `.venv` com o comando no terminal já dentro do diretorio do projeto:
+Para gerar o timelapse com as imagens capturadas primeiramente é necessário iniciar o `.venv` com o comando no terminal já dentro do diretorio do projeto:
 
 ```zsh
 source .venv/bin/activate
 ```
 
-Após isso basta rodar o o programa de python com as imagens no diretorio certo:
+Após isso, basta rodar o programa de python com as imagens no diretorio certo:
 
 ```bash
 python3 timelapse.py
