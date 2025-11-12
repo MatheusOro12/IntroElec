@@ -18,10 +18,10 @@
   - [🆔 Usando a IDE do Arduino](#-usando-a-ide-do-arduino)
   - [💻 Usando o VS Code com PlatformIO](#-usando-o-vs-code-com-platformio)
 - [🖱️ Executando o Projeto](#️-executando-o-projeto)
-  - [:keyboard: Operação do Controlador Principal](#️-operação-do-controlador-principal)
-  - [:camera_flash: Operação do Módulo de Câmera](#-operação-do-módulo-de-câmera)
-  - [:movie_camera: Gerando o Timelapse com Python](#-gerando-o-timelapse-com-python)
-- [:adhesive_bandage: Solução de Problemas (Troubleshooting)](#-solução-de-problemas-troubleshooting)
+  - [:keyboard: Operação do Controlador Principal](#-controlador-principal-esp32)
+  - [:camera_flash: Operação do Módulo de Câmera](#-controlador-principal-esp32)
+  - [:movie_camera: Gerando o Timelapse com Python](#movie_camera-gerando-o-timelapse-com-python)
+- [:adhesive_bandage: Solução de Problemas (Troubleshooting)](#adhesive_bandage-solução-de-problemas-troubleshooting)
 - [📄 Licença](#-licença)
 
 <!-- TOC -->
@@ -44,7 +44,12 @@ O objetivo é **controlar e monitorar as condições ambientais internas**, alé
   - Comunicação com a **ESP32-CAM** via rede Wi-Fi
   - Envio dos dados para monitoramento
 
-![esp32 pinout](/media/esp32_pin.jpg)
+<p align="center"> 
+  Pinout da <b>Esp32 main</b> para guiar quais portas conectar:
+</p> 
+<p align="center">
+  <img height=300px src="/media/esp32_pin.jpg" alt="Match3v3"/>
+</p>
 
 ### 📷 Módulo esp32-CAM
 
