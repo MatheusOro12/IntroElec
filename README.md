@@ -40,16 +40,29 @@ O objetivo é **controlar e monitorar as condições ambientais internas**, alé
 - Microcontrolador: **ESP32-WROOM**
 - Responsável pelo controle da incubadora:
   - Leitura do sensor de temperatura e umidade (**DHT11**)
-  - Controle de aquecimento e ventilação (via **GPIOs**)
+  - Controle de termico e de umidade (via **GPIOs**)
   - Comunicação com a **ESP32-CAM** via rede Wi-Fi
   - Envio dos dados para monitoramento
 
 <p align="center"> 
   Pinout da <b>Esp32 main</b> para guiar quais portas conectar:
-</p> 
+ </p>
+
 <p align="center">
-  <img height=300px src="/media/esp32_pin.jpg" alt="Match3v3"/>
+  <img height=300px src="/media/esp32_pin.jpg" alt="esp32 pinout"/>
 </p>
+
+<p align="center">
+  <img height=150px src="/media/DHT11.png" alt="DHT11 pinout"/>
+</p>
+
+Segundo o pinout da esp32 deve conectar:
+
+- **SDA** do LCD com a porta **D21**
+- **SCL** do LCD na porta **D22** da esp32
+- **Data pin** do DHT11 pa porta **D4** da esp32
+- **Positivo** da Peltier quente na porta **D25** da esp32
+- **Positivo** da Peltier fria na porta **D26** da esp32
 
 ### 📷 Módulo esp32-CAM
 
@@ -63,22 +76,22 @@ O objetivo é **controlar e monitorar as condições ambientais internas**, alé
 ### 🆔 Usando a IDE do Arduino
 
 1. Instale a [IDE do Arduino](https://www.arduino.cc/en/software)
-2. No menu **Preferências**, adicione a URL: https://dl.espressif.com/dl/package_esp32_index.json
-3. Vá em **Ferramentas → Placa → Gerenciador de Placas**, e instale **esp32 by Espressif Systems**
-4. Selecione a placa:
+2. Vá no **boad manager** e instale o *"esp32 by Espressif Systems"*
+3. Selecione a placa:
    - Para o controlador: `ESP32 Dev Module`
    - Para a câmera: `AI Thinker ESP32-CAM`
 
-5. Faça upload dos códigos correspondentes de cada módulo.
+4. Copie os arquivos do `src/` de cada diretorio dentro de um novo projeto arduino
+5. Colar o que está escrito no `main.cpp` no arquivo `.ino`
+6. Faça upload dos códigos correspondentes de cada módulo.
 
 ### 💻 Usando o VS Code com PlatformIO
 
 1. Instale o [VS Code](https://code.visualstudio.com/)
 2. Adicione a extensão **PlatformIO IDE**
-3. Crie um novo projeto e selecione:
-   - Board: `esp32dev` (para o controlador principal)
-4. Copie os arquivos `.cpp` e `.h` do projeto para a pasta `src/`
-5. Compile e envie para o dispositivo usando o botão “Upload”
+3. Abra cada diretorio do codigo em uma aba diferente do **VS Code**
+4. Compile e envie para o dispositivo usando o botão na parte inferior ***PlatformIO: Upload***
+5. Abra o monitor serial pelo botão ***PlatformIO: Serial Monitor***
 
 ## 🖱️ Executando o Projeto
 
@@ -98,7 +111,13 @@ O objetivo é **controlar e monitorar as condições ambientais internas**, alé
 
 ### :movie_camera: Gerando o Timelapse com Python
 
-Para gerar o timelapse com as imagens capturadas roda:
+Para gerar o timelapse com as imagens capturadas é primeiro preciso iniciar o `.venv` com o comando no terminal já dentro do diretorio do projeto:
+
+```zsh
+source .venv/bin/activate
+```
+
+Após isso basta rodar o o programa de python com as imagens no diretorio certo:
 
 ```bash
 python3 timelapse.py
