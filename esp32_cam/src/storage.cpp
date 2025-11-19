@@ -9,6 +9,8 @@ um cartão micro SD, mas ele salva no cartão
 
 PS: nao tenho certeza de estar funcionando
 */
+
+//TODO: integrate the fotos taken ito the storage
 void setupStorage() {
 if (!SD_MMC.begin()) {
 Serial.println("Card Mount Failed");

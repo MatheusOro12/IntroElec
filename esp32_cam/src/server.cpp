@@ -1,7 +1,7 @@
 #include "server.h"
 #include "file_change.h"
 
-
+//TODO: complement the fotos of the storage into an downloadable zip
 void setupServer(){ //incia o servidor
     server.on("/", []() {
         server.sendHeader("Content-Type", "text/html; charset=utf-8");

@@ -5,6 +5,7 @@
 
 WebServer server(80);
 
+//TODO: conect with esp32cam internet and get the images
 const char htmlPage[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html>
@@ -69,6 +70,7 @@ void handleRoot() {
     server.send(200, "text/html", htmlPage);
 }
 
+//BUG: reset changes every other second 
 void handleStatus() { //atualiza o que é mostrado no site
     float t = getTemperature();
     float h = getHumidity();

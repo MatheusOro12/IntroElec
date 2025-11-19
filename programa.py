@@ -5,7 +5,8 @@ import natsort
 #endereço das imagens
 folder = "fotos"
 
-
+# TODO: integrate with the esp server 
+# TODO: compile from zip file
 images = [img for img in os.listdir(folder) if img.lower().endswith((".jpg", ".jpeg", ".png"))]
 images = natsort.natsorted(images)
 
@@ -20,11 +21,13 @@ out = cv2.VideoWriter("timelapse.mp4", cv2.VideoWriter_fourcc(*"mp4v"), 30, (wid
 
 print("Gerando vídeo...")
 
+#junta as imagens
 for img_name in images:
     img_path = os.path.join(folder, img_name)
     frame = cv2.imread(img_path)
     out.write(frame)
 
+#retorna o video
 out.release()
 print("Timelapse finalizado! Arquivo salvo como: timelapse.mp4")
 

@@ -16,6 +16,8 @@ void setupControl() { //inicia o controle das peltier
     ledcAttachPin(PELTIER_COOL, 1);
 }
 
+//TODO: setup humidity in setupControl
+
 void updateControl() {
     float t = getTemperature();
 
@@ -30,6 +32,7 @@ void updateControl() {
         ledcWrite(1, 0); //desliga frio
     }
 }
+// TODO: updatate with humidity controler 
 
 // Getters: retorna a variavel
 float getTargetTemperature() { return targetTemperature; }

@@ -2,6 +2,7 @@
 #include <esp_camera.h>
 #include <Arduino.h>
 
+//FIXME: maybe change the path to the foto taken 
 void setupCamera() { //inica a camera com as portas definidas ligadas na esp32
     camera_config_t config; //cria o objeto de configuracao da camera
     config.ledc_channel = LEDC_CHANNEL_0; //define a porta conectada na LED imbutida
