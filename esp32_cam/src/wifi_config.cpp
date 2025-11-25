@@ -5,11 +5,23 @@ const char* WIFI_SSID = "iPhone de Matheus"; //nome da rede wifi
 const char* WIFI_PASS = "xenosauro1"; //senha da rede wifi
 
 void setupWiFi() { //conecta no wifi
+    WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_SSID, WIFI_PASS);
-    while (WiFi.status() != WL_CONNECTED) { //aguarda enqaunto a esp ainda nao conectou no wifi
-        delay(500);
+
+    Serial.print("Conectando ao WiFi");
+
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(300);
         Serial.print(".");
     }
-    Serial.println("\nConnected to WiFi");
-    Serial.println(WiFi.localIP());// printa o endereço de ip da esp32
+
+    Serial.println("\nWiFi conectado");
+    Serial.print("IP: ");
+    Serial.println(WiFi.localIP());
+
+    if (MDNS.begin("esp32cam")) {
+        Serial.println("mDNS ativo: http://esp32cam.local");
+    } else {
+        Serial.println("ERRO no mDNS");
+    }
 }

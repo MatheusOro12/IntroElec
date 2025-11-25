@@ -6,16 +6,16 @@
 #include "file_change.h"
 #include "server.h"
 
-
-
 void setup() {
     Serial.begin(115200);
     setupWiFi();
     setupCamera();
+    setupStorage();
+    setupTimelapse();
     setupServer();
-    
 }
 
 void loop() {
+    handleTimelapse();
     handleServer();
 }
