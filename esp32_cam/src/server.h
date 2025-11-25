@@ -1,9 +1,8 @@
 #pragma once
 #include <WebServer.h>
 
-extern WebServer server;
-
-WebServer server(80);
+extern WebServer server;   // apenas declaração
 
 void setupServer();
 void handleServer();
+void handleJpg();

@@ -6,7 +6,7 @@
 #define PELTIER_COOL 26 //porta que a peltier fria esta ligada
 
 #define HUMIDIFIER_PIN 27   // aumenta umidade
-#define DEHUMIDIFIER_PIN 14 // reduz umidade
+#define DEHUMIDIFIER_PIN 26 // reduz umidade
 
 // Valores configuráveis
 float targetTemperature = 37.0;
@@ -18,15 +18,16 @@ void setupControl() { //inicia o controle das peltier
     ledcAttachPin(PELTIER_HEAT, 0);
     ledcAttachPin(PELTIER_COOL, 1);
 
-    ledSetup(2, 1000, 8);
-    ledSetup(3, 1000, 8);
-    ledAttachPin(HUMIDIFIER_PIN, 2);
-    ledAttachPin(DEHUMIDIFIER_PIN, 3);
+    ledcSetup(2, 1000, 8);
+    ledcSetup(3, 1000, 8);
+    ledcAttachPin(HUMIDIFIER_PIN, 2);
+    ledcAttachPin(DEHUMIDIFIER_PIN, 3);
     
 }
 
 void updateControl() {
     float t = getTemperature();
+    float h = getHumidity();
 
     if (t < targetTemperature - 0.5) {// temp a baixo, liga aquecer
         ledcWrite(0, 200); // liga o aquecimento

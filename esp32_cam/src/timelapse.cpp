@@ -1,3 +1,9 @@
+
+#include "esp_camera.h"
+#include "img_converters.h"
+#include "FS.h"
+#include "SD_MMC.h"
+
 #include "timelapse.h"
 #include "camera_module.h"
 #include "storage.h"

@@ -1,5 +1,6 @@
 #include "wifi_config.h"
 #include <WiFi.h>
+#include <ESPmDNS.h>
 
 const char* WIFI_SSID = "iPhone de Matheus"; //nome da rede wifi
 const char* WIFI_PASS = "xenosauro1"; //senha da rede wifi

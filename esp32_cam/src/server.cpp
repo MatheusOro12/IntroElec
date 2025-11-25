@@ -3,7 +3,9 @@
 #include <SD_MMC.h>
 #include <esp_camera.h>
 
-void setupServer(){ //incia o servidor
+WebServer server(80);   // DEFINIÇÃO única (correto!)
+
+void setupServer() {
     server.on("/", []() {
         server.sendHeader("Content-Type", "text/html; charset=utf-8");
         server.send(200, "text/html",
@@ -24,7 +26,8 @@ void setupServer(){ //incia o servidor
             "</body>"
             "</html>"
         );
-    });// codigo html do server
+    });
+
     server.on("/jpg", handleJpg);
 
     server.on("/download", []() {
@@ -41,6 +44,29 @@ void setupServer(){ //incia o servidor
     Serial.println("Servidor iniciado!");
 }
 
-void handleServer(){
+void handleServer() {
     server.handleClient();
+}
+
+void handleJpg() {
+    camera_fb_t* fb = esp_camera_fb_get();
+    if (!fb) {
+        server.send(500, "text/plain", "Erro ao capturar imagem");
+        return;
+    }
+
+    uint8_t* jpg = nullptr;
+    size_t jpg_len = 0;
+
+    if (!frame2jpg(fb, 80, &jpg, &jpg_len)) {
+        esp_camera_fb_return(fb);
+        server.send(500, "text/plain", "Falha ao converter para JPG");
+        return;
+    }
+
+    server.sendHeader("Content-Type", "image/jpeg");
+    server.send_P(200, "image/jpeg", (char*)jpg, jpg_len);
+
+    free(jpg);
+    esp_camera_fb_return(fb);
 }

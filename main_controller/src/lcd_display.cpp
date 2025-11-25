@@ -12,16 +12,18 @@ void setupLCD() { //inicia a tela LCD
 }
 
 void updateLCD() {
-    lcd.clear(); //apaga tudo da tela LCD
+    //lcd.clear(); //apaga tudo da tela LCD
     lcd.setCursor(0, 0);// printa primeira linha
     lcd.print("T:");
-    lcd.print(getTemperature());
+    lcd.print(getTemperature(), 1);
     lcd.print("/");
-    lcd.print(getTargetTemperature());
+    lcd.print(getTargetTemperature(), 1);
+    lcd.print(" ");
 
     lcd.setCursor(0, 1);//printa segunda linha
     lcd.print("H:");
-    lcd.print(getHumidity());
+    lcd.print(getHumidity(), 1);
     lcd.print("/");
-    lcd.print(getTargetHumidity());
+    lcd.print(getTargetHumidity(), 1);
+    lcd.print(" ");
 }

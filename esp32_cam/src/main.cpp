@@ -3,8 +3,9 @@
 #include <Arduino.h>
 #include "wifi_config.h"
 #include "camera_module.h"
-#include "file_change.h"
 #include "server.h"
+#include "timelapse.h"
+#include "storage.h"
 
 void setup() {
     Serial.begin(115200);
