@@ -5,7 +5,6 @@
 
 WebServer server(80);
 
-//TODO: conect with esp32cam internet and get the images
 const char htmlPage[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html>
@@ -33,32 +32,44 @@ const char htmlPage[] PROGMEM = R"rawliteral(
       <input type="number" id="umid" step="0.1" min="20" max="80">
       <button type="submit">Atualizar</button>
     </form>
+
+    <a href="/download">
+      <button type="button">Baixar Time-lapse (ZIP)</button>
+    </a>
   </div>
 <script>
-const statusURL = "/status";
-const setURL = "/set";
+let editing = false;
+
+["temp", "umid"].forEach(id => {
+  document.getElementById(id).addEventListener("input", () => editing = true);
+  document.getElementById(id).addEventListener("blur", () => editing = false);
+});
 
 async function updateStatus() {
-  const res = await fetch(statusURL);
+  if (editing) return;  // ← CORREÇÃO
+
+  const res = await fetch("/status");
   const data = await res.json();
+
   document.getElementById('tAtual').textContent = data.tempAtual;
   document.getElementById('uAtual').textContent = data.umidadeAtual;
+
   document.getElementById('temp').value = data.tempDesejada;
   document.getElementById('umid').value = data.umidadeDesejada;
 }
 
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const temp = document.getElementById('temp').value;
-  const umid = document.getElementById('umid').value;
-  await fetch(setURL, {
+  editing = false;
+
+  await fetch("/set", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `temp=${temp}&umid=${umid}`
+    body: `temp=${temp.value}&umid=${umid.value}`
   });
+
   updateStatus();
 });
-
 setInterval(updateStatus, 5000);
 updateStatus();
 </script>
@@ -70,7 +81,6 @@ void handleRoot() {
     server.send(200, "text/html", htmlPage);
 }
 
-//BUG: reset changes every other second 
 void handleStatus() { //atualiza o que é mostrado no site
     float t = getTemperature();
     float h = getHumidity();
@@ -96,13 +106,23 @@ void handleSet() {// recebe o que foi modificado no site
     server.send(200, "text/plain", "Valores atualizados");
 }
 
-void setupServer() { //inicia o servidor com os inderesos genericos
+void handleDownloadRedirect() {
+    server.sendHeader("Location", "http://esp32cam.local/download");
+    server.send(302, "text/plain", "");
+}
+
+void setupServer() {
     server.on("/", handleRoot);
     server.on("/status", handleStatus);
     server.on("/set", HTTP_POST, handleSet);
+
+    // Rota que redireciona para a ESP32-CAM pegar o ZIP
+    server.on("/download", handleDownloadRedirect);
+
     server.begin();
     Serial.println("Servidor iniciado");
 }
+
 
 void handleServer() { //atualiza o servidor com o metodo padrao do server
     server.handleClient();
