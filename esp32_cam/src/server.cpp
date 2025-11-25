@@ -1,7 +1,8 @@
 #include "server.h"
-#include "file_change.h"
+#include "timelapse.h"
+#include <SD_MMC.h>
+#include <esp_camera.h>
 
-//TODO: complement the fotos of the storage into an downloadable zip
 void setupServer(){ //incia o servidor
     server.on("/", []() {
         server.sendHeader("Content-Type", "text/html; charset=utf-8");
@@ -25,8 +26,19 @@ void setupServer(){ //incia o servidor
         );
     });// codigo html do server
     server.on("/jpg", handleJpg);
+
+    server.on("/download", []() {
+        File zipFile = SD_MMC.open("/timelapse.zip");
+        if (!zipFile) {
+            server.send(500, "text/plain", "ZIP não encontrado");
+            return;
+        }
+        server.streamFile(zipFile, "application/zip");
+        zipFile.close();
+    });
+
     server.begin();
-    Serial.println("Servidor iniciado!"); //printa que deu tudo certo
+    Serial.println("Servidor iniciado!");
 }
 
 void handleServer(){

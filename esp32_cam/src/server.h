@@ -1,9 +1,7 @@
 #pragma once
-
 #include <WebServer.h>
-#include <esp_camera.h>
-#include <Arduino.h>
-#include "wifi_config.h"
+
+extern WebServer server;
 
 WebServer server(80);
 
